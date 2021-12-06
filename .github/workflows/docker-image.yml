@@ -12,5 +12,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Login DockerHub
+      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      with:
+        username: ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}
+        password: ${{ secrets.MARIANA_DOCKERHUB_PASSWORD }}
+    
+    - name: Build reverse_proxy image
+      run:  docker build reverse_proxy/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/finalwork:reverse-proxy:${{ github.sha }} 
+      
+    - name: Push reverse_proxy image
+      run: docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy 
+
