@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.MARIANA_DOCKERHUB_PASSWORD }}
     
     - name: Build reverse_proxy image
-      run:  docker build reverse_proxy/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/finalwork:reverse-proxy:${{ github.sha }} 
+      run:  docker build reverse_proxy/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:${{ github.sha }} 
       
     - name: Push reverse_proxy image
       run: docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy 
