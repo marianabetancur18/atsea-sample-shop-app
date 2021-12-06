@@ -26,6 +26,6 @@ jobs:
       run: mvn -B package --file app/pom.xml
 
     - name: Unit test with Maven
-    - run: mvn -B package --file app/pom.xml
+      run: mvn -B package --file app/pom.xml
 
   
