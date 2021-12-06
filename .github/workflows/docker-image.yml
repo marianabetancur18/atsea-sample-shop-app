@@ -24,3 +24,8 @@ jobs:
     - name: Push reverse_proxy image
       run: docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy 
 
+    - name: Build database image
+      run:  docker build database/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database:${{ github.sha }} 
+      
+    - name: Push database image
+      run: docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database
