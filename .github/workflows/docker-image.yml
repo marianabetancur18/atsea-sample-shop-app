@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-#try
+
   build:
 
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.INSTANCE_USERNAME }}
           key: ${{ secrets.INSTANCE_KEY }}
-          source: "./docker-compose.yml, ./devsecrets"
+          source: "./docker-compose.yml, ./devsecrets, ./reverse_proxy, ./database, ./app , ./payment_gateway"
           target: "/home/${{ secrets.INSTANCE_USERNAME }}"
 
       - name: executing remote ssh commands using key
