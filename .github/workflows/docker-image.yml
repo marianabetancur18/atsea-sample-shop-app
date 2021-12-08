@@ -70,9 +70,18 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.INSTANCE_USERNAME }}
           key: ${{ secrets.INSTANCE_KEY }}
-          source: "./docker-compose.yml, ./devsecrets, ./reverse_proxy, ./database, ./app , ./payment_gateway"
+          source: "./docker-compose.yml, ./devsecrets"
           target: "/home/${{ secrets.INSTANCE_USERNAME }}"
 
+      - name: Transfer files via ssh key proxy
+        uses: appleboy/scp-action@master
+        with:      
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.INSTANCE_USERNAME }}
+          key: ${{ secrets.INSTANCE_KEY }}
+          source: "./reverse_proxy"
+          target: "/home/${{ secrets.INSTANCE_USERNAME }}"
+      
       - name: executing remote ssh commands using key
         uses: appleboy/ssh-action@master
         with:
