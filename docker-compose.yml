@@ -2,13 +2,12 @@ version: "3.1"
 
 services:
   reverse_proxy:
-    build: ./reverse_proxy
+    build: marianabetancur14/reverse-proxy
     user: nginx
 
   database:
-    build: 
-       context: ./database
-    image: atsea_db
+  
+    image: marianabetancur14/database
     user: postgres
     environment:
       POSTGRES_USER: gordonuser
@@ -22,10 +21,8 @@ services:
       - postgres_password
 
   appserver:
-    build:
-       context: app
-       dockerfile: Dockerfile
-    image: atsea_app
+  
+    image: marianabetancur14/app
     user: gordon
     ports:
       - "8080:8080" 
@@ -37,8 +34,7 @@ services:
       - postgres_password
 
   payment_gateway:
-    build:
-      context: payment_gateway
+    image: marianabetancur14/payment_gateway
     networks:
       - payment
     secrets:
