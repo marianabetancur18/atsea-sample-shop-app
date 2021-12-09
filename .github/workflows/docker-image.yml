@@ -78,7 +78,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.INSTANCE_USERNAME }}
           key: ${{ secrets.INSTANCE_KEY }}
-          script: cd home/${{ secrets.INSTANCE_USERNAME }} |
+          script: docker-compose stop && docker-compose rm -f|
               pwd |
               sudo docker-compose up -d
       
