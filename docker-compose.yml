@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   reverse_proxy:
-    build: marianabetancur14/reverse-proxy
+    image: marianabetancur14/reverse-proxy
     user: nginx
 
   database:
