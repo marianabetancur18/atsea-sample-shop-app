@@ -78,6 +78,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.INSTANCE_USERNAME }}
           key: ${{ secrets.INSTANCE_KEY }}
-          script: sudo docker swarm init |
-              sudo docker-compose up -d
+          script: |
+              sudo docker-compose up --build
       
