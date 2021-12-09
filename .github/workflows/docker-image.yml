@@ -65,12 +65,15 @@ jobs:
        
       - name: Transfer files via ssh key
         uses: appleboy/scp-action@master
+      
         with:      
           host: ${{ secrets.HOST }}
           username: ${{ secrets.INSTANCE_USERNAME }}
           key: ${{ secrets.INSTANCE_KEY }}
+          script: rm docker-compose.yml | rm devsecrets
           source: "./docker-compose.yml, ./devsecrets"
           target: "/home/${{ secrets.INSTANCE_USERNAME }}"
+          
 
       - name: executing remote ssh commands using key
         uses: appleboy/ssh-action@master
@@ -78,7 +81,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.INSTANCE_USERNAME }}
           key: ${{ secrets.INSTANCE_KEY }}
-          script: docker-compose stop && docker-compose rm -f|
+          script:
               pwd |
               sudo docker-compose up -d
       
