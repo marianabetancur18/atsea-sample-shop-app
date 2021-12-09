@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-
+#try
   build:
 
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
       run : docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/app
 
   deploy:
- ##try   
+    
     runs-on: ubuntu-latest
     env:
       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -73,15 +73,6 @@ jobs:
           source: "./docker-compose.yml, ./devsecrets"
           target: "/home/${{ secrets.INSTANCE_USERNAME }}"
 
-      - name: Transfer files via ssh key proxy
-        uses: appleboy/scp-action@master
-        with:      
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.INSTANCE_USERNAME }}
-          key: ${{ secrets.INSTANCE_KEY }}
-          source: "./reverse_proxy"
-          target: "/home/${{ secrets.INSTANCE_USERNAME }}"
-      
       - name: executing remote ssh commands using key
         uses: appleboy/ssh-action@master
         with:
