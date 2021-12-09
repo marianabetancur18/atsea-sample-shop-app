@@ -2,12 +2,12 @@ version: "3.1"
 
 services:
   reverse_proxy:
-    image: marianabetancur14/reverse-proxy
+    image: marianabetancur14/reverse-proxy:ebd032cdd30257085b2b72db1a65da528d8040cf
     user: nginx
 
   database:
   
-    image: marianabetancur14/database
+    image: marianabetancur14/database:311ce5dfcb114c7506ba84732be91398631b69db
     user: postgres
     environment:
       POSTGRES_USER: gordonuser
@@ -22,7 +22,7 @@ services:
 
   appserver:
   
-    image: marianabetancur14/app
+    image: marianabetancur14/app:db42c237661e61da3695cacda800a56e47f25670
     user: gordon
     ports:
       - "8080:8080" 
@@ -34,7 +34,7 @@ services:
       - postgres_password
 
   payment_gateway:
-    image: marianabetancur14/payment_gateway
+    image: marianabetancur14/payment_gateway:23840e1b33572624b8556a5d29198a0ecd6fc719
     networks:
       - payment
     secrets:
