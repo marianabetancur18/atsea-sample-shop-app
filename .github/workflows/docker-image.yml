@@ -79,6 +79,5 @@ jobs:
           username: ${{ secrets.INSTANCE_USERNAME }}
           key: ${{ secrets.INSTANCE_KEY }}
           script: |
-              pwd |
-              sudo docker-compose up -d
+              pwd; sudo docker-compose up -d
       
