@@ -1,8 +1,8 @@
 FROM node:latest AS storefront
 WORKDIR /usr/src/atsea/app/react-app
 COPY react-app .
-RUN sudo npm install
-RUN sudo npm run build
+RUN npm install
+RUN npm run build
 
 FROM maven:latest AS appserver
 WORKDIR /usr/src/atsea
