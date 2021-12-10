@@ -92,7 +92,7 @@ jobs:
           --header "authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
           --header "Accept: application/vnd.github.v3+json" \
           --data "{
-            "event_type": "deployed"
+            \"event_type\": \"deployed\"
             }" \
           --fail
           
