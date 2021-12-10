@@ -60,10 +60,8 @@ jobs:
           
       
       - name: Check if the instance is running
-        run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }};
-             aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} ;
-          state=`(aws ec2 describe-instance-status --instance-id ${{ secrets.MYM_INSTANCE_ID }}) | grep -w "running" | wc -l`;
-          if [ "$state" -eq 0 ]; then aws ec2 start-instances --instance-ids ${{ secrets.MYM_INSTANCE_ID }}; fi
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}; aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} ; state=`(aws ec2 describe-instance-status --instance-id ${{ secrets.MYM_INSTANCE_ID }}) | grep -w "running" | wc -l`; if [ "$state" -eq 0 ]; then aws ec2 start-instances --instance-ids ${{ secrets.MYM_INSTANCE_ID }}; fi
        
       - name: Transfer files via ssh key
         uses: appleboy/scp-action@master
