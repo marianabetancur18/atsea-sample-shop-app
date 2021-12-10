@@ -89,11 +89,11 @@ jobs:
         run: |
           curl --request POST \ 
           --url https://api.github.com/repos/marianabetancur18/atsea-sample-shop-test/dispatches \
-          --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' \
-          --header 'Accept: application/vnd.github.v3+json' \
-          --data '{
+          --header "authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
+          --header "Accept: application/vnd.github.v3+json" \
+          --data "{
             "event_type": "deployed"
-            }' \
+            }" \
           --fail
           
           
