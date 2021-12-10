@@ -19,25 +19,25 @@ jobs:
         password: ${{ secrets.MARIANA_DOCKERHUB_PASSWORD }}
     
     - name: Build reverse_proxy image
-      run:  docker build reverse_proxy/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:${{ github.sha }} 
+      run:  docker build reverse_proxy/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:newversion -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy:${{ github.sha }} 
       
     - name: Push reverse_proxy image
       run: docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/reverse-proxy 
 
     - name: Build database image
-      run:  docker build database/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database:${{ github.sha }} 
+      run:  docker build database/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database:newversion -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database:${{ github.sha }} 
       
     - name: Push database image
       run: docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/database
 
     - name: Build payment_gateway image
-      run:  docker build payment_gateway/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/payment_gateway:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/payment_gateway:${{ github.sha }} 
+      run:  docker build payment_gateway/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/payment_gateway:newversion -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/payment_gateway:${{ github.sha }} 
       
     - name: Push payment gateway image
       run: docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/payment_gateway
 
     - name: Build app image
-      run: docker build app/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/app:latest -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/app:${{ github.sha }}
+      run: docker build app/ -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/app:newversion -t ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/app:${{ github.sha }}
 
     - name: push app image
       run : docker push --all-tags ${{ secrets.MARIANA_DOCKERHUB_USERNAME }}/app
